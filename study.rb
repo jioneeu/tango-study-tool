@@ -80,7 +80,17 @@ class JapneseStudy
     puts "Press enter to move on.."
     puts "======================================="
     words_set.each_with_index do |word, i|
+      word = word.split('-')[0].strip
       print "#{i+1}: #{word.chomp}"
+      gets
+    end
+
+    puts "======================================="
+    puts "Answers"
+    puts "======================================="
+    words_set.each_with_index do |word, i|
+      answer = word.split('-')[1].strip
+      print "#{i+1}: #{answer.chomp}"
       gets
     end
   end
