@@ -89,8 +89,7 @@ class JapneseStudy
     puts "Answers"
     puts "======================================="
     words_set.each_with_index do |word, i|
-      answer = word.split('-')[1].strip
-      print "#{i+1}: #{answer.chomp}"
+      print word.chomp
       gets
     end
   end
