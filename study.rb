@@ -89,7 +89,7 @@ class JapneseStudy
     puts "Answers"
     puts "======================================="
     words_set.each_with_index do |word, i|
-      print word.chomp
+      print "#{i+1}: #{word.chomp}"
       gets
     end
   end
