@@ -1,5 +1,3 @@
-require 'date'
-
 class JapneseStudy
   def initialize
     @words_list = read_files
@@ -56,21 +54,23 @@ class JapneseStudy
     print "> "
     choose = gets.to_i
     words_from = @words_list[choose-1].chomp
+		path_to_all = "review/all-words/#{words_from}"
+		path_to_missed = "review/missed-words/#{words_from}"
+
+		puts "test: #{words_from}"
 
     puts "1. Review all words"
-    puts "2. Review only words I missed"
+    puts "2. Review only words I missed" if File.exist? path_to_missed
     puts "0. quit"
     print "> "
     choose = gets.to_i
+    return if choose != 1 and choose != 2
 
-    return if choose == 0
     words_set = nil
     if choose == 1
-      path = "review/all-words/#{words_from}"
-      words_set = IO.readlines(path)
+      words_set = IO.readlines(path_to_all)
     elsif choose == 2
-      path = "review/missed-words/#{words_from}"
-      words_set = IO.readlines("./review/missed-words/#{words_from}")
+			words_set = IO.readlines(path_to_missed)
     end
 
     words_set = words_set.shuffle
@@ -89,7 +89,8 @@ class JapneseStudy
     puts "Answers"
     puts "======================================="
     words_set.each_with_index do |word, i|
-      print "#{i+1}: #{word.chomp}"
+			eng, ja = word.split('-').map(&:strip)
+			printf "%02d: %-30s %-8s" % [i+1, eng, ja]
       gets
     end
   end
