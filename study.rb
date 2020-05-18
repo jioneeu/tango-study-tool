@@ -37,7 +37,7 @@ class JapneseStudy
     open(path, 'w') do |f|
       while true
         print "> "
-        word = gets.chomp.downcase
+        word = gets.chomp
 
         break if word == "done" or word == "exit"
         f.puts word
@@ -53,6 +53,7 @@ class JapneseStudy
     end
     print "> "
     choose = gets.to_i
+		return if @words_list[choose-1] == nil
     words_from = @words_list[choose-1].chomp
 		path_to_all = "review/all-words/#{words_from}"
 		path_to_missed = "review/missed-words/#{words_from}"
@@ -90,7 +91,7 @@ class JapneseStudy
     puts "======================================="
     words_set.each_with_index do |word, i|
 			eng, ja = word.split('-').map(&:strip)
-			printf "%02d: %-30s %-8s" % [i+1, eng, ja]
+			printf "%02d: [%s] %s" % [i+1, ja, eng]
       gets
     end
   end
