@@ -38,6 +38,7 @@ class JapneseStudy
       while true
         print "> "
         word = gets.chomp
+        puts word
 
         break if word == "done" or word == "exit"
         f.puts word
@@ -91,7 +92,7 @@ class JapneseStudy
     puts "======================================="
     words_set.each_with_index do |word, i|
 			eng, ja = word.split('-').map(&:strip)
-			printf "%02d: [%s] %s" % [i+1, ja, eng]
+			printf "%02d: %s <======> %s" % [i+1, ja, eng]
       gets
     end
   end
